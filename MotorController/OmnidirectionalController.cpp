@@ -1,15 +1,15 @@
 #include "OmnidirectionalController.h"
-void OmnidirectionalController::setupPins(unsigned int sysSpeed){
-  Motors[1].setupPins(7,8,5,9); //PinA1, PinA2, PinPWM, PinStandby
-  Motors[2].setupPins(0,0,0,0); //PinA1, PinA2, PinPWM, PinStandby
-  Motors[3].setupPins(0,0,0,0);  //PinA1, PinA2, PinPWM, PinStandby
+void OmnidirectionalController::setupPins(unsigned int systemSpeed){
+  Motors[0].setupPins(12,11,10,13); //PinA1, PinA2, PinPWM, PinStandby
+  Motors[1].setupPins(5,4,3,6); //PinA1, PinA2, PinPWM, PinStandby
+  Motors[2].setupPins(7,8,9,6);  //PinA1, PinA2, PinPWM, PinStandby
+  sysSpeed=systemSpeed;
 }
 
-void OmnidirectionalController::calculateTrajectory(int x, int y, int w){
-  x=sysSpeed*x;
-  y=sysSpeed*y;
+void OmnidirectionalController::calculateTrajectory(float x,float y, float w){
   for (int i=0;i<3;i++){
-    motorVector=(-sineVal[i]*x+cosVal[i]*y+w*wheelDistance)/wheelRadius;
+    motorVector=(-sineVal[i]*x+cosVal[i]*y+w);
+    motorVector=round(motorVector*sysSpeed);
     if (motorVector<0){
       motorVector=-motorVector;
       Motors[i].setDirection(0); //sets to counter clockwise
@@ -19,7 +19,7 @@ void OmnidirectionalController::calculateTrajectory(int x, int y, int w){
     Motors[i].setSpeed(motorVector);
   }
 }
-
+/*
 void OmnidirectionalController::staticDistance(int targetDistance){
   //code to read in from ultrasonic=readin
   int readIn; //
@@ -28,4 +28,4 @@ void OmnidirectionalController::staticDistance(int targetDistance){
   } else{
     calculateTrajectory(1,0,0);
   }
-}
+}*/
