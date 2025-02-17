@@ -7,13 +7,13 @@ void setup(){
 
 void loop(){
   delay(3000);
-  base.calculateTrajectory(1, 0, 0);
+  base.calculateTrajectory(1, 0);
   delay(5000);
-  base.calculateTrajectory(0, 1, 0);
+  base.calculateTrajectory(0, 1);
   delay(5000);
-  base.calculateTrajectory(0,0,1);
+  base.calculateTrajectory(0,0);
   delay(3000);
-  base.calculateTrajectory(0.66,0.66, 0);
+  base.calculateTrajectory(0.66,0.66);
   delay(4000);
-  base.calculateTrajectory(0, 0,0);
+  base.calculateTrajectory(0, 0);
 }

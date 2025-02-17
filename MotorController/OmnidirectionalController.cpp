@@ -6,9 +6,9 @@ void OmnidirectionalController::setupPins(unsigned int systemSpeed){
   sysSpeed=systemSpeed;
 }
 
-void OmnidirectionalController::calculateTrajectory(float x,float y, float w){
+void OmnidirectionalController::calculateTrajectory(float x,float y){
   for (int i=0;i<3;i++){
-    motorVector=(-sineVal[i]*x+cosVal[i]*y+w);
+    motorVector=(-sineVal[i]*x+cosVal[i]*y);
     motorVector=round(motorVector*sysSpeed);
     if (motorVector<0){
       motorVector=-motorVector;
@@ -17,6 +17,25 @@ void OmnidirectionalController::calculateTrajectory(float x,float y, float w){
       Motors[i].setDirection(1);  //sets to clockwise
     }
     Motors[i].setSpeed(motorVector);
+  }
+}
+
+void OmnidirectionalController::Rotate(int w){  //precise turning
+  //enc count for 1 rotation calculation
+  //formula for in degrees = distanceWheel*encCount/(360*wheelRadius)*w
+  Motors[0].setDirection(0);
+  Motors[1].setDirection(0);
+  Motors[2].setDirection(0);
+  Motors[0].setSpeed(sysSpeed);
+  Motors[1].setSpeed(sysSpeed);
+  Motors[2].setSpeed(sysSpeed);
+  while (1){
+    if (digitalRead(encPinA)||digitalRead(encPinB)){
+      encCount++;
+    }
+    if (encCount==target){
+       break;
+    }
   }
 }
 /*
