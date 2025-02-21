@@ -6,7 +6,7 @@ void OmnidirectionalController::setupPins(unsigned int systemSpeed){
   sysSpeed=systemSpeed;
 }
 
-void OmnidirectionalController::calculateTrajectory(float x,float y){
+void OmnidirectionalController::calculateTrajectory(float x,float y){ //uses the IK (without rotation) to allow for a 2d vector input to translate it to motor speeds
   for (i=0;i<3;i++){
     motorVector=(-sineVal[i]*x+cosVal[i]*y);
     motorVector=round(motorVector*sysSpeed);
