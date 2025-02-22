@@ -16,14 +16,18 @@ void ColourSensorArray::readSensors(int colour){
   j=0;
 } //plan to extend this for case off the line: add flag j=2 for 2 found. if j!=2, then we return 1 from function (otherwise 0). Make new function that does the opposite of the main function to cawlculate opposite vector.
 
-void ColourSensorArray::assignAngle(){
-  x=sensorXDistance[sensors[0]]-sensorXDistance[sensors[1]];  //favours left side
-  y=sensorYDistance[sensors[0]]-sensorYDistance[sensors[1]];  //favours forwards
-  if (!y&&lastValue%2==1){  //if its purely horizontal, check the last value. if it was on the right side, flip the logic
+void ColourSensorArray::assignAngle(){  //need to expand to a case where 0 = additional rather than assuming up
+  x=sensorXDistance[sensors[0]]-sensorXDistance[sensors[1]];  //naturally calculates left and up being positive due to which pins are connected
+  y=sensorYDistance[sensors[0]]-sensorYDistance[sensors[1]];  //"
+  if (lastXDirection==(x>=0)&&!lastYDirection==(y>=0)){ //gonna ternary this later but thought id leave it like this so the logic is easier for others to understand
+    y=-y;
+  } else if (lastYDirection==(y>=0)&&!lastXDirection==(x>=0)){
     x=-x;
-  }
+  } //basically if it allows only one direction to be changed at a time.
+
   normalise();
-  lastValue=sensors[0]; //will always be the first sensor as we know the robot will always be heading forwards
+  lastXDirection=(x>=0); //1 equals left favoured, 0 = right favoured
+  lastYDirection=(y>=0); //" but up and then down
 }
 
 void ColourSensorArray::normalise(){  //normalises the vector so the system total speed nvr goes over the system speed
