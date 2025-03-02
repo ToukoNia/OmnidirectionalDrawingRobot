@@ -1,13 +1,9 @@
-#include "OmnidirectionalController.h"
-OmnidirectionalController base;
+#include "body.h"
+RobotBody body;
 void setup(){
-  base.setupPins(150);
   Serial.begin(9600);
 }
 
 void loop(){
-  base.calculateTrajectory(0, 0);
-  base.Rotate(180);
-  base.calculateTrajectory(0, 0);
-  delay(5000);
+  body.StartSequence();
 }
