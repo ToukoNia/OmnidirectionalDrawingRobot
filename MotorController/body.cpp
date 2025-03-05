@@ -1,15 +1,13 @@
 #include "body.h"
-
+void RobotBody::Setup(){
+  base.setupPins(150);
+}
 void RobotBody::StartSequence(){
-  movement.setupPins(150);
-  movement.Rotate(180);
-  movement.calculateTrajectory(0,1);
-  lineDetector.detectLine();
-  LineFollowing(BLACK);
+  base.calculateTrajectory(1,1);
+ // base.findWall(20,15,0,1);
 }
-void RobotBody::LineFollowing(int colour){
-  if (lineDetector.readSensors(colour)){
-    lineDetector.assignAngle();
-  } 
-  movement.calculateTrajectory(lineDetector.x,lineDetector.y);
+void RobotBody::FirstTunnel(){
+//  base.findWall(20,20,1,0);
 }
+
+//void RobotBody::

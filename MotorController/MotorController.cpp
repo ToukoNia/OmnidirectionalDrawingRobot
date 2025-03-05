@@ -32,12 +32,6 @@ void MotorController::brk(){
   AI2=1;
   digitalWrite(pinAI1, AI1);
   digitalWrite(pinAI2, AI2);
-  delay(400);
-  AI1=0;
-  AI2=0;
-  digitalWrite(pinAI1, AI1);
-  digitalWrite(pinAI2, AI2);
-  delay(600);
 }
 
 //clock-wise, anti clock-wise

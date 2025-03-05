@@ -16,6 +16,6 @@ float Ultrasonic::calculateDistance(){
   // Reads the echoPin, returns the sound wave travel time in microseconds
   distance = pulseIn(echoPin, HIGH);
   // Calculating the distance
-  distance = distance * 0.034 / 2;  //called it distance twice to save storage and float operations
+  distance = distance * distanceCoeff / 2;  //called it distance twice to save storage and float operations
   return distance;
 }

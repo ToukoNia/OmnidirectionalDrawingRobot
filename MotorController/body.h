@@ -2,17 +2,16 @@
 #ifndef body_h
 #define body_h
 #include "OmnidirectionalController.h"
-#include "ColourSensor.h"
 #include <Arduino.h>
 
 
 class RobotBody { 
   private:
-    ColourSensorArray lineDetector;
-    OmnidirectionalController movement;
+    OmnidirectionalController base;
     float x; float y;
   public:
     void StartSequence();
-    void LineFollowing(int colour);
+    void Setup();
+    void FirstTunnel();
 };
 #endif
