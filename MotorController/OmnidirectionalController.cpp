@@ -27,9 +27,9 @@ void OmnidirectionalController::Rotate(int w){  //precise turning
   //enc count for 1 rotation calculation
   //formula for in degrees = distanceWheel*encCount(960)/(360*wheelRadius)*w
   value=round(EncoderVal*w);
-  Motors[0].setDirection(0);
-  Motors[1].setDirection(0);
-  Motors[2].setDirection(0);
+  Motors[0].setDirection(1);
+  Motors[1].setDirection(1);
+  Motors[2].setDirection(1);
   Motors[0].setSpeed(sysSpeed);
   Motors[1].setSpeed(sysSpeed);
   Motors[2].setSpeed(sysSpeed);
@@ -45,7 +45,7 @@ void OmnidirectionalController::Rotate(int w){  //precise turning
        break;
     }
   }
-
+  calculateTrajectory(0,0);
 }
 
 void OmnidirectionalController::breakAll(){
