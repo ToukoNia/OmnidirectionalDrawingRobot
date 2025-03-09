@@ -3,7 +3,6 @@
 #define body_h
 #include "OmnidirectionalController.h"
 #include <Arduino.h>
-#include "ultrasonic.h"
 #include <NewPing.h>
 
 class RobotBody { 
@@ -14,7 +13,6 @@ class RobotBody {
   public:
     void StartSequence();
     void FinalStretch();
-
     void Setup();
     void staticDistance(int targetDistance, bool sideDirection, int robotDirection);
     void findWall(int targetDistance, int staticDistance, bool forwardDirection, bool sideDirection, bool robotOrientation);

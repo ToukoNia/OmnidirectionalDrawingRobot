@@ -48,8 +48,4 @@ void OmnidirectionalController::Rotate(int w){  //precise turning
   calculateTrajectory(0,0);
 }
 
-void OmnidirectionalController::breakAll(){
-  for (i=0;i<3;i++){
-    Motors[i].brk();
-  }
-}
+

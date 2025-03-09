@@ -7,6 +7,6 @@ void setup(){
 
 void loop(){
   body.StartSequence();
-  body.FinalStretch();
+ body.FinalStretch();
   delay(10000);
 }
