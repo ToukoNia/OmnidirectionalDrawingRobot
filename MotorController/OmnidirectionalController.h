@@ -2,7 +2,7 @@
 #ifndef OmnidirectionalController_h
 #define OmnidirectionalController_h
 #define encPinA 2
-#define EncoderVal 6.7
+#define EncoderVal 6.8
 
 
 #include <Arduino.h>
@@ -21,6 +21,7 @@ class OmnidirectionalController {
   public:
     void setupPins(unsigned int systemSpeed);
     void calculateTrajectory(float x, float y);
+    void slowContinousRotation(bool direction);
     void Rotate(int w);
 };
 #endif

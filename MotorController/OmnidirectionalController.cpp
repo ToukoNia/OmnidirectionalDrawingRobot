@@ -13,6 +13,9 @@ void OmnidirectionalController::calculateTrajectory(float x,float y){ //uses the
   for (i=0;i<3;i++){
     motorVector=(-sineVal[i]*x+cosVal[i]*y);
     motorVector=round(motorVector*sysSpeed);
+    if (x&&y&&x>y){
+      motorVector=motorVector+y*sysSpeed/10;
+    } 
     if (motorVector<0){
       motorVector=-motorVector;
       Motors[i].setDirection(0); //sets to counter clockwise
