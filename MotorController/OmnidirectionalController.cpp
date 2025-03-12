@@ -16,6 +16,12 @@ void OmnidirectionalController::calculateTrajectory(float x,float y){ //uses the
       Motors[i].coast();
     } else{
       motorVector=round(motorVector*sysSpeed);
+      /* adds an offset to prevent the drifting issue
+        if ((x&&y)&&(x<y)){
+          motorVector=motorVector+x*sysSpeed/10
+      }
+      */
+
       if (motorVector<0){
         motorVector=-motorVector;
         Motors[i].setDirection(0); //sets to counter clockwise

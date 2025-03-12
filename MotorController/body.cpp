@@ -17,6 +17,8 @@ void RobotBody::StartSequence(){
 
 
 void RobotBody::FinalStretch(){
+  findWall(12,13,0,1,0);
+  delay(100);
   findWall(lengths[0]+2,12,1,0,0);
   findWall(lengths[1],lengths[0]+2,0,1,0);
 }
@@ -28,6 +30,7 @@ void RobotBody::findDistance(bool direction){
 void RobotBody::staticDistance(int targetDistance, bool sideDirection,int robotDirection){
   distance=Ultrasonics[sideDirection].ping_cm();
   error=K*(targetDistance-distance)/10;
+  error=abs(error)>0.5 ? error*0.5/abs(error) : error;
     if ((distance<=targetDistance+DISTANCE_BUFFER || distance>=DISTANCE_BUFFER+targetDistance)&&distance){  //have a way to flip which trajectory mayb?
       if (sideDirection){
         base.calculateTrajectory(robotDirection,error); //might need to flip this if vertical and horizontal gets flipped, or add a proportional control
@@ -42,7 +45,6 @@ void RobotBody::staticDistance(int targetDistance, bool sideDirection,int robotD
       }
     
     }
-  //  lastError=
 }
 
 void RobotBody::findWall(int targetDistance, int constantDistance, bool forwardDirection, bool sideDirection, bool robotOrientation){
