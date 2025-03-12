@@ -22,5 +22,6 @@ class OmnidirectionalController {
     void setupPins(unsigned int systemSpeed);
     void calculateTrajectory(float x, float y);
     void Rotate(int w);
+    void brk();
 };
 #endif

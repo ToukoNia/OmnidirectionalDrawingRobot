@@ -1,6 +1,6 @@
 #include "body.h"
 void RobotBody::Setup(){
-  base.setupPins(150);
+  base.setupPins(125);
   base.Rotate(180);
 }
 
@@ -12,15 +12,13 @@ void RobotBody::StartSequence(){
   delay(100);
   findDistance(1);
   findWall(8,13,0,1,1);
-
+  delay(100);
 }
 
 
 void RobotBody::FinalStretch(){
-  base.calculateTrajectory(-1,0);
-  delay(300);
-  findWall(lengths[0]+1,12,1,0,0);
-  findWall(lengths[1],lengths[0]+1,0,1,0);
+  findWall(lengths[0]+2,12,1,0,0);
+  findWall(lengths[1],lengths[0]+2,0,1,0);
 }
 
 void RobotBody::findDistance(bool direction){
@@ -28,12 +26,13 @@ void RobotBody::findDistance(bool direction){
 }
 
 void RobotBody::staticDistance(int targetDistance, bool sideDirection,int robotDirection){
-  distance=Ultrasonics[sideDirection].convert_cm(Ultrasonics[sideDirection].ping_median(3));
+  distance=Ultrasonics[sideDirection].ping_cm();
+  error=K*(targetDistance-distance)/10;
     if ((distance<=targetDistance+DISTANCE_BUFFER || distance>=DISTANCE_BUFFER+targetDistance)&&distance){  //have a way to flip which trajectory mayb?
       if (sideDirection){
-        base.calculateTrajectory(robotDirection,0.75*(targetDistance-distance)/(targetDistance)); //might need to flip this if vertical and horizontal gets flipped, or add a proportional control
+        base.calculateTrajectory(robotDirection,error); //might need to flip this if vertical and horizontal gets flipped, or add a proportional control
       } else {
-        base.calculateTrajectory(0.75*(distance-targetDistance)/(targetDistance),-robotDirection);
+        base.calculateTrajectory(-error,-robotDirection);
       }
     } else {
       if (sideDirection){
@@ -43,6 +42,7 @@ void RobotBody::staticDistance(int targetDistance, bool sideDirection,int robotD
       }
     
     }
+  //  lastError=
 }
 
 void RobotBody::findWall(int targetDistance, int constantDistance, bool forwardDirection, bool sideDirection, bool robotOrientation){
@@ -55,5 +55,5 @@ void RobotBody::findWall(int targetDistance, int constantDistance, bool forwardD
       staticDistance(constantDistance,sideDirection,-1);
    }
   }
-   base.calculateTrajectory(0,0);
+  base.brk();
 }

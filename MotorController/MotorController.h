@@ -23,5 +23,6 @@ class MotorController {
     void setSpeed(char pwmValue);
     void setDirection(int direction);
     void brk();
+    void coast();
 };
 #endif

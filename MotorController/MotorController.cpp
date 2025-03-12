@@ -34,6 +34,12 @@ void MotorController::brk(){
   digitalWrite(pinAI2, AI2);
 }
 
+void MotorController::coast(){
+  AI1=0;
+  AI2=0;
+  digitalWrite(pinAI1, AI1);
+  digitalWrite(pinAI2, AI2);
+}
 //clock-wise, anti clock-wise
 void MotorController::cw(){
   AI1 = 1;

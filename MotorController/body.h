@@ -5,13 +5,13 @@
 #include <Arduino.h>
 #include <NewPing.h>
 #define DISTANCE_BUFFER 2
-#define K 0.75
+#define K 0.4
 
 class RobotBody { 
   private:
     NewPing Ultrasonics[2]={NewPing(25,27),NewPing(29,31)};  //0 is in line with x axis, 1 is in line with the y axis on the robot
     OmnidirectionalController base;
-    int distance; int lengths[2];
+    int distance; int lengths[2]; int error;
   public:
     void StartSequence();
     void FinalStretch();

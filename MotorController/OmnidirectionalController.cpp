@@ -12,14 +12,18 @@ void OmnidirectionalController::calculateTrajectory(float x,float y){ //uses the
   y=y/value;
   for (i=0;i<3;i++){
     motorVector=(-sineVal[i]*x+cosVal[i]*y);
-    motorVector=round(motorVector*sysSpeed);
-    if (motorVector<0){
-      motorVector=-motorVector;
-      Motors[i].setDirection(0); //sets to counter clockwise
-    } else {
-      Motors[i].setDirection(1);  //sets to clockwise
+    if (!motorVector){
+      Motors[i].coast();
+    } else{
+      motorVector=round(motorVector*sysSpeed);
+      if (motorVector<0){
+        motorVector=-motorVector;
+        Motors[i].setDirection(0); //sets to counter clockwise
+      } else {
+        Motors[i].setDirection(1);  //sets to clockwise
+      }
+      Motors[i].setSpeed(motorVector);
     }
-    Motors[i].setSpeed(motorVector);
   }
 }
 
@@ -48,4 +52,8 @@ void OmnidirectionalController::Rotate(int w){  //precise turning
   calculateTrajectory(0,0);
 }
 
-
+void OmnidirectionalController::brk(){
+  for (i=0;i<3;i++){
+    Motors[i].brk();
+  }
+}
