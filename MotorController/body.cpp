@@ -8,17 +8,15 @@ void RobotBody::StartSequence(){
   findWall(20,16,0,1,1);  //endponint in cm, how far from wall in cm, if sideways is now forwards, if forwards is now sideways, direction
   base.Rotate(100);
   delay(100);
-  findWall(17,20,0,1,1);
+  findWall(8,20,0,1,1);
 }
 
 
 void RobotBody::FinalStretch(){
   delay(20);
   findWall(83,15,1,0,0);
-  findWall(80,83,0,1,0);
+  findWall(80,83,0,1,0); 
 }
-
-
 
 void RobotBody::staticDistance(int targetDistance, bool sideDirection,int robotDirection){
   distance=Ultrasonics[sideDirection].ping_cm();

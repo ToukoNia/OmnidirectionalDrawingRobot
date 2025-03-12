@@ -4,6 +4,7 @@
 #include "OmnidirectionalController.h"
 #include <Arduino.h>
 #include <NewPing.h>
+#include <Servo.h>
 
 class RobotBody { 
   private:
