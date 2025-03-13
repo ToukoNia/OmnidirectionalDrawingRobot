@@ -37,7 +37,7 @@ void Arm::drawLine(){
   S2PulseWidth = moveServo(S2, 2000, -0.331055526);
   delay(500);
   S1PulseWidth = moveServo(S1, 1424, 0.486584700);
-  delay(2000);
+  delay(500);
   
   bool lineFinished=false;
   while(!lineFinished){
