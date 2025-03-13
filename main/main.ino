@@ -4,20 +4,16 @@ RobotBody body;
 Arm RobotArm;
 void setup(){
   Serial.begin(9600);
+  RobotArm.Setup();
   body.Setup();
-  Arm.Setup();
 }
 
 void loop(){
-  RobotArm.storePosition();
-  delay(100);
+/*  delay(100);
   body.StartSequence();
-  //RobotArm.drawLine();
-  RobotArm.storePosition();
-  delay(100);
+  RobotArm.drawLine();
+  delay(100);*/
   body.FinalStretch();
-  RobotArm.dropPen();
-  delay(100);
-  RobotArm.storePosition();
+  //RobotArm.dropPen();
   delay(10000);
 }

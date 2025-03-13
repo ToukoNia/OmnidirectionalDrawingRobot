@@ -11,16 +11,18 @@ void RobotBody::StartSequence(){
   base.Rotate(95);
   delay(100);
   findDistance(1);
-  findWall(8,13,0,1,1);
+  findWall(16,13,0,1,1);
   delay(100);
 }
 
 
 void RobotBody::FinalStretch(){
-  findWall(12,13,0,1,0);
-  delay(100);
-  findWall(lengths[0]+2,12,1,0,0);
-  findWall(lengths[1],lengths[0]+2,0,1,0);
+//  findWall(12,13,0,1,0);
+//  delay(100);
+//  findWall(lengths[0]+2,16,1,0,0);
+//  findWall(lengths[1],lengths[0]+2,0,1,0);
+  findWall(82,16,1,0,0);
+
 }
 
 void RobotBody::findDistance(bool direction){

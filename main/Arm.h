@@ -31,10 +31,6 @@ class Arm {
     Servo S2;
     Servo S3;
 
-    unsigned long timestamp;
-    unsigned long elapsed;
-    unsigned long controlRate = 15;
-
     float S1RadAngle;
     float S2RadAngle;
 
@@ -56,9 +52,9 @@ class Arm {
     unsigned int readColor();
     bool IsItGreen();
     int moveServo(Servo servo, int refPulseWidth, float servoRadAngle);
+    void storePosition();
   public:
     void Setup();
-    void storePosition();
     void dropPen();
     void drawLine();
 
