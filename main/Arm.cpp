@@ -25,8 +25,8 @@ void Arm::storePosition(){
 }
 
 void Arm::dropPen(){
-  S1PulseWidth = moveServo(S1, 1424, 0.6);
-  S2PulseWidth = moveServo(S2, 2000, -2);
+  S1PulseWidth = moveServo(S1, 1424, 0.4);
+  S2PulseWidth = moveServo(S2, 2000, -1.7);
   delay(1000);
   S3.write(180);
   delay(1000);

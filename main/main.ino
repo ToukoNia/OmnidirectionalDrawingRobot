@@ -9,11 +9,11 @@ void setup(){
 }
 
 void loop(){
-/*  delay(100);
+  delay(100);
   body.StartSequence();
   RobotArm.drawLine();
-  delay(100);*/
+  delay(100);
   body.FinalStretch();
-  //RobotArm.dropPen();
+  RobotArm.dropPen();
   delay(10000);
 }
