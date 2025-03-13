@@ -11,14 +11,14 @@ void RobotBody::StartSequence(){
   base.Rotate(95);
   delay(100);
   findDistance(1);
-  findWall(15,13,0,1,1);
+  findWall(14,13,0,1,1);
   delay(100);
 }
 
 
 void RobotBody::FinalStretch(){
   delay(100);
-  findWall(lengths[0]+2,15,1,0,0);
+  findWall(lengths[0]+2,14,1,0,0);
   findWall(lengths[1],lengths[0]+2,0,1,0);
 }
 

@@ -15,5 +15,5 @@ void loop(){
   delay(100);
   body.FinalStretch();
   RobotArm.dropPen();
-  delay(10000);
+  delay(5000);
 }

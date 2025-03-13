@@ -2,7 +2,10 @@
 #define Arm_h
 #include <Servo.h>
 #include <Arduino.h>
-
+#define Pi 3.142
+#define INCREMENT 0.0157
+#define S1_BASE -0.8
+#define S2_BASE -2.4
 
 class Arm { 
   private:
@@ -42,9 +45,6 @@ class Arm {
     int out = 43;
     volatile unsigned int countR = 0, countG = 0, countB = 0;
 
-    int S1PulseWidth;
-    int S2PulseWidth;
-
     int whiteCount = 0;
     int greenCount = 0;
     bool whiteSection = false;
@@ -53,6 +53,8 @@ class Arm {
     bool IsItGreen();
     int moveServo(Servo servo, int refPulseWidth, float servoRadAngle);
     void storePosition();
+    float increment(float currentAngle, float targetAngle);
+    void RateLimitServo(Servo servo, int refPulseWidth, float currentAngle, float servoRadAngle);
   public:
     void Setup();
     void dropPen();
