@@ -6,24 +6,18 @@ void RobotBody::Setup(){
 
 void RobotBody::StartSequence(){
   
-  findDistance(0);
-  findWall(19,16,0,1,1);  //endponint in cm, how far from wall in cm, if sideways is now forwards, if forwards is now sideways, direction
+  findWall(18,16,0,1,1);  //endponint in cm, how far from wall in cm, if sideways is now forwards, if forwards is now sideways, direction
   base.Rotate(95);
   delay(100);
-  findDistance(1);
-  findWall(13,13,0,1,1);
+  findWall(13,18,0,1,1);
   delay(100);
 }
 
 
 void RobotBody::FinalStretch(){
   delay(100);
-  findWall(lengths[0]+2,13,1,0,0);
-  findWall(lengths[1],lengths[0]+2,0,1,0);
-}
-
-void RobotBody::findDistance(bool direction){
-  lengths[direction]=Ultrasonics[0].convert_cm(Ultrasonics[0].ping_median(5));
+  findWall(83,13,1,0,0);
+  findWall(80,83,0,1,0);
 }
 
 void RobotBody::staticDistance(int targetDistance, bool sideDirection,int robotDirection){
@@ -48,11 +42,11 @@ void RobotBody::staticDistance(int targetDistance, bool sideDirection,int robotD
 
 void RobotBody::findWall(int targetDistance, int constantDistance, bool forwardDirection, bool sideDirection, bool robotOrientation){
   if (robotOrientation){
-    while(Ultrasonics[forwardDirection].convert_cm(Ultrasonics[forwardDirection].ping_median(5))>targetDistance){
+    while(Ultrasonics[forwardDirection].convert_cm(Ultrasonics[forwardDirection].ping_median(3))>targetDistance){
       staticDistance(constantDistance,sideDirection,1);
    }
   } else {
-    while(Ultrasonics[forwardDirection].convert_cm(Ultrasonics[forwardDirection].ping_median(5))<targetDistance){
+    while(Ultrasonics[forwardDirection].convert_cm(Ultrasonics[forwardDirection].ping_median(3))<targetDistance){
       staticDistance(constantDistance,sideDirection,-1);
    }
   }
