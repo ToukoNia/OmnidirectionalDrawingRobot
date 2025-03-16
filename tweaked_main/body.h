@@ -4,8 +4,8 @@
 #include "OmnidirectionalController.h"
 #include <Arduino.h>
 #include <NewPing.h>
-#define DISTANCE_BUFFER 2
-#define K 0.4
+#define DISTANCE_BUFFER 1
+#define K 0.2
 
 class RobotBody { 
   private:

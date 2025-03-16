@@ -35,41 +35,37 @@ void Arm::dropPen(){
 
 void Arm::drawLine(){
   RateLimitServo(S2, 2000, S2_BASE,-0.331055526);
-  delay(500);
   RateLimitServo(S1, 1424, S1_BASE, 0.486584700);
   delay(2000);
-  bool lineFinished=false;
-  while(!lineFinished){
-      for (int i = 0; i < 40; i++) {
-        S1RadAngle = S1Array[i];
-        S2RadAngle = S2Array[i];
-            
-        bool GreenCheck = IsItGreen();
-        if(GreenCheck == false){
-            //Serial.println("White/n");
-            whiteCount+=1;
-            if(whiteCount>3){
+  
+    for (int i = 0; i < 40; i++) {
+      S1RadAngle = S1Array[i];
+      S2RadAngle = S2Array[i];
+          
+      GreenCheck = IsItGreen();
+      if(GreenCheck == false){
+          //Serial.println("White/n");
+          whiteCount++;
+          if(whiteCount>3){
             greenCount=0;
-            }
-            if(whiteCount>10){
-            whiteSection=true;
-            }
-        }
-        else{
-            //Serial.println("Green/n");
-            greenCount+=1;
-            if(greenCount>3){
-              whiteCount=0;
-            }
-            if(greenCount>7 && whiteSection==true){
-              lineFinished=true;
-              i = 40;
-            }
-        }
-        moveServo(S1, 1424, S1RadAngle);
-        moveServo(S2, 2000, S2RadAngle);
-        delay(150);
-    }
+          }
+          if(whiteCount>10){
+          whiteSection=true;
+          }
+      }
+      else{
+          //Serial.println("Green/n");
+          greenCount++;
+          if(greenCount>3){
+            whiteCount=0;
+          }
+          if(greenCount>7 && whiteSection==true){
+            break;
+          }
+      }
+      moveServo(S1, 1424, S1RadAngle);
+      moveServo(S2, 2000, S2RadAngle);
+      delay(150);
   }
   storePosition();
 }
@@ -89,7 +85,6 @@ bool Arm::IsItGreen() {
     } else {
         return false;
     }
-    delay(100);
 }
 
 int Arm::moveServo(Servo servo, int refPulseWidth, float servoRadAngle){

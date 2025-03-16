@@ -30,6 +30,7 @@ void Arm::dropPen(){
   moveServo(S2, 2000, -1.7);
   delay(1000);
   delay(1000);
+  S3.write(90);
   storePosition();
 }
 
