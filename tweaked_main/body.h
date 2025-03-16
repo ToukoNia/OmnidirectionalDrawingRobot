@@ -5,7 +5,7 @@
 #include <Arduino.h>
 #include <NewPing.h>
 #define DISTANCE_BUFFER 1
-#define K 0.2
+#define K 0.15
 
 class RobotBody { 
   private:
