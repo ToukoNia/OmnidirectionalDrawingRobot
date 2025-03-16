@@ -6,16 +6,16 @@ void RobotBody::Setup(){
 
 void RobotBody::StartSequence(){
   
-  findWall(18,16,0,1,1);  //endponint in cm, how far from wall in cm, if sideways is now forwards, if forwards is now sideways, direction
+  findWall(17,16,0,1,1);  //endponint in cm, how far from wall in cm, if sideways is now forwards, if forwards is now sideways, direction
   base.Rotate(90);
   delay(100);
-  findWall(10,18,0,1,1);
+  findWall(10,17,0,1,1);
   delay(100);
 }
 
 
 void RobotBody::FinalStretch(){
-  findWall(13,18,0,1,0);
+  findWall(13,17,0,1,0);
   delay(100);
   findWall(82,13,1,0,0);
   findWall(80,82,0,1,0);
@@ -24,7 +24,7 @@ void RobotBody::FinalStretch(){
 void RobotBody::staticDistance(int targetDistance, bool sideDirection,int robotDirection){
   distance=Ultrasonics[sideDirection].ping_cm();
   error=K*(targetDistance-distance);
-  if ((distance<=targetDistance+DISTANCE_BUFFER || distance>=DISTANCE_BUFFER+targetDistance)&&(distance>targetDistance-7)&&distance){  //have a way to flip which trajectory mayb?
+  if ((distance<=targetDistance+DISTANCE_BUFFER || distance>=DISTANCE_BUFFER+targetDistance)&&(distance>targetDistance-7)&&distance){  
       if (sideDirection){
         base.calculateTrajectory(robotDirection,error); 
       } else {
