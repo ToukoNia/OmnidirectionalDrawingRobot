@@ -1,4 +1,5 @@
 #include "OmnidirectionalController.h"
+#define FRICTION 4
 void OmnidirectionalController::setupPins(unsigned int systemSpeed){
   Motors[0].setupPins(12,11,10,13); //PinA1, PinA2, PinPWM, PinStandby
   Motors[1].setupPins(7,8,9,6);  //PinA1, PinA2, PinPWM, PinStandby
@@ -18,7 +19,7 @@ void OmnidirectionalController::calculateTrajectory(float x,float y){ //uses the
       motorVector=round(motorVector*sysSpeed);
       // adds an offset to prevent the drifting issue
         if ((y)&&(x<y)){
-          motorVector=motorVector-4;
+          motorVector=motorVector-FRICTION;
       }
 
       if (motorVector<0){
